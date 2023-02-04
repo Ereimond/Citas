@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock title %} | Gorilla Garage</title>
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.2/datatables.min.css"/>
+ 
+    <link rel="stylesheet" href="{% static 'core/css/main.css' %}" />
+  </head>
+
+  <body>
+    <!-- =============== Navigation ================ -->
+    <div class="contend">
+      <div class="navegacion">
+        <ul class="mio2">
+          <li class="li">
+            <a href="{% url 'home' %}" class="a">
+              <span class="icon">
+                <img src="{% static 'core/img/logo.png' %}" alt="Logo" class="logo" />
+              </span>
+              <span class="titulo">Gorilla Garage</span>
+            </a>
+          </li>
+        
+          <li class="li">
+            <a href="/" class="a">
+              <span class="icon">
+                <ion-icon name="home-outline"></ion-icon>
+              </span>
+              <span class="title">Inicio</span>
+              <div class="linea"><span class="color"></span></div>
+            </a>
+          </li>
+
+          <li class="li">
+            <a href="{% url 'profileUser' %}" class="a">
+              <span class="icon">
+                <ion-icon name="person-outline"></ion-icon>
+              </span>
+              <span class="title">Perfil</span>
+            </a>
+          </li>
+
+          <li class="li">
+            <a href="{% url 'cita' %}" class="a">
+              <span class="icon">
+                <ion-icon name="calendar-clear-outline"></ion-icon>
+              </span>
+              <span class="title">Citas</span>
+            </a>
+          </li>
+          {% if role != 'Mecánico' %}
+          <li class="li">
+            <a href="{% url 'vehiculo' %}" class="a">
+              <span class="icon">
+                <ion-icon name="car-sport-outline"></ion-icon>
+              </span>
+              <span class="title">Vehículo</span>
+            </a>
+          </li>
+          {% endif %} 
+          <li class="li">
+            <a href="{% url 'mecanicos' %}" class="a">
+              <span class="icon">
+                <ion-icon name="briefcase-outline"></ion-icon>
+              </span>
+              <span class="title">Mecánicos</span>
+            </a>
+          </li>
+
+          <li class="li">
+            <a href="{% url 'logout' %}" class="a">
+              <span class="icon">
+                <ion-icon name="log-out-outline"></ion-icon>
+              </span>
+              <span class="title">Salir</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ========================= Main ==================== -->
+      <div class="main">
+        <div class="topbar">
+          <div class="toggle">
+            <ion-icon name="menu-outline"></ion-icon>
+            
+
+          </div>
+          <div class="user me-3 mt-0">
+            <h5 class="mb-0"><i class="bi bi-person-circle"></i> {{ role }}</h5>
+        </div>
+        </div>
+
+        <!--  Contenido  -->
+        {% block content %}{% endblock content %}
+        {% block modales %}{% endblock modales %}
+      </div>
+    </div>
+
+    <!-- ====== ionicons ======= -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+    <!-- =========== Scripts =========  -->
+    <script src="{% static 'core/js/main.js' %}"></script>
+    {% block js %}{% endblock js %}
+  </body>
+</html>
